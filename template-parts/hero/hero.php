@@ -2,7 +2,7 @@
 /**
  * Static hero module placeholder.
  *
- * @package WordPress_Boilerplate_2025
+ * @package WP_Boilerplate
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                     <?php esc_html_e( 'Launch faster with a dependable WordPress foundation.', 'boilerplate' ); ?>
                 </h1>
                 <p class="text-lg text-white/80">
-                    <?php esc_html_e( 'WordPress Boilerplate 2025 pairs Tailwind CSS with modern tooling so you can focus on custom design and content.', 'boilerplate' ); ?>
+                    <?php esc_html_e( 'WordPress Boilerplate pairs Tailwind CSS with modern tooling so you can focus on custom design and content.', 'boilerplate' ); ?>
                 </p>
                 <div class="flex flex-wrap items-center gap-4">
                     <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-900 transition hover:bg-slate-100">

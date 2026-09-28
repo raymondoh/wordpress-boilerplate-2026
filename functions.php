@@ -2,15 +2,11 @@
 /**
  * Theme bootstrap
  *
- * @package WordPress_Boilerplate_2025
+ * @package WP_Boilerplate
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
-}
-
-if ( ! defined( 'BP_THEME_VERSION' ) ) {
-    define( 'BP_THEME_VERSION', '0.1.0' );
 }
 
 require_once get_template_directory() . '/inc/setup.php';

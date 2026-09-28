@@ -1,108 +1,64 @@
-# WordPress Boilerplate Theme
+# WordPress Boilerplate
 
-A lean WordPress starter that pairs **Tailwind CSS 4**, **esbuild**, and clean PHP templates. It ships with a sticky header, mobile drawer navigation, and a modular hero layout you can adapt per project.
+A lean classic WordPress starter for Idiom Digital projects, built with PHP templates, Tailwind CSS 4, and esbuild. It intentionally avoids client branding and a large predefined design system. The existing header, mobile drawer, content templates, and static hero provide scaffolding to adapt per project.
 
----
+## Quick start
 
-## 🚀 Quick Start
+1. Place this repository in your WordPress installation under `wp-content/themes/wordpress-boilerplate/`.
+2. Use Node.js 24, as specified in `.nvmrc`:
 
-1. Copy or clone the theme into your WordPress installation under `wp-content/themes/`.
-
-2. If you use `nvm`, switch to the project Node version defined in `.nvmrc`:
-
-   ```bash
+   ```sh
    nvm use
-   ```
-
-3. Install dependencies:
-
-   ```bash
    npm install
    ```
 
-4. Start local builds while you work:
+3. Build while developing:
 
-   ```bash
+   ```sh
    npm run watch
    ```
 
-   Or compile a production build when you deploy:
+4. Generate minified assets for release:
 
-   ```bash
+   ```sh
    npm run build
    ```
 
-5. Activate **WordPress Boilerplate 2025** in the WordPress admin.
+5. Activate **WordPress Boilerplate** in the WordPress admin and assign a menu to **Primary Menu**. Without an assigned menu, the theme lists top-level pages.
 
-## 🧰 Build Commands
+The PHP scaffold targets WordPress 6.0+ and PHP 7.4+.
 
-| Command | Description |
-| ------- | ----------- |
-| `npm run watch` | Watches Tailwind (`src/css/tailwind.css`) and JavaScript (`src/js/main.js`) and rebuilds to `assets/css/main.css` and `assets/js/main.js`. |
-| `npm run build` | Runs one-off production builds for CSS and JS (minified, cache-friendly). |
-| `npm run build:css` | Builds and minifies the Tailwind CSS bundle using `@tailwindcss/cli`. |
-| `npm run build:js` | Bundles and minifies the JavaScript entrypoint using esbuild. |
+## Build and source locations
 
-## 🧭 Boilerplate Guide
+| Command | Purpose |
+| --- | --- |
+| `npm run watch` | Run the CSS and JavaScript watchers together. |
+| `npm run build` | Build both minified production bundles. |
+| `npm run build:css` / `npm run watch:css` | Compile `src/css/tailwind.css` through `@tailwindcss/cli` to `assets/css/main.css`. |
+| `npm run build:js` / `npm run watch:js` | Bundle `src/js/main.js` and its imports through esbuild to `assets/js/main.js`. |
 
-### Mobile drawer navigation
+Compiled assets and `node_modules/` are ignored by Git. Rebuild assets for each checkout and include the generated CSS and JavaScript when deploying the theme. No separate Tailwind or PostCSS configuration is needed by this build.
 
-The sticky header renders a desktop menu plus the mobile toggle button (`#mobile-nav-toggle`) with open (`#icon-open`) and close (`#icon-close`) icons. The drawer itself lives in `template-parts/navigation-mobile.php` and is included directly after the header via `get_template_part('template-parts/navigation-mobile');`.
+`style.css` contains only WordPress theme metadata. `functions.php` loads `inc/setup.php` (theme supports and menus) and `inc/enqueue.php` (assets). The metadata stylesheet uses the theme version from WordPress; compiled CSS and JavaScript use their file modification times for cache busting and are enqueued only when present.
 
-The hidden `<span>` inside `header.php` contains the utility classes that the JavaScript toggles (`translate-x-*`, `opacity-*`, `pointer-events-*`, `overflow-hidden`). Keep that span (or add an equivalent source reference) if you adjust the header so Tailwind can detect and include those classes in the generated CSS.
+## Styling
 
-### Hero section module
+`src/css/tailwind.css` starts with `@import "tailwindcss";`. Tailwind CSS 4 detects utility classes in the PHP and JavaScript sources automatically. Keep class names literal when adding JavaScript-driven states so they can be detected.
 
-A static hero scaffold is stored at `template-parts/hero/hero.php`. It is already referenced in `front-page.php`:
+The CSS adds only responsive media defaults, neutral slate focus outlines, reduced-motion handling, WordPress screen-reader text support, and the `.site-container` / `.site-section` layout helpers used by the templates. Project typography, colours, and components belong to each site's design; no generic card, button, badge, form, or navigation component system is included.
 
-```php
-get_template_part( 'template-parts/hero/hero' );
-```
+## Mobile drawer
 
-Swap the placeholder copy, wire it up to ACF, or add a slider script when you need it—no additional enqueueing is enabled by default.
+`header.php` renders the sticky header and toggle, then includes `template-parts/navigation-mobile.php`. `src/js/main.js` initializes `src/js/mobile-drawer.js` after the DOM loads. The drawer updates toggle and drawer ARIA states, switches icons, animates menu items, and locks body scrolling. The toggle, backdrop, a navigation link, or Escape can close it.
 
-### Site Functionality plugin
+## Hero and content templates
 
-Project-specific logic (custom post types, taxonomies, ACF field groups) belongs in `wp-content/plugins/site-functionality/site-functionality.php`. The scaffold ships with commented examples so you can quickly uncomment or adapt them for each client site. Activate this plugin alongside the theme to keep presentation and functionality separate.
+`front-page.php` includes `template-parts/hero/hero.php`, then renders page content. The hero is a static scaffold: its slide controls are placeholders and have no slider logic. Adapt the copy and `/contact` and `/work` links for each site.
 
-## 🗂 File Structure
+`index.php`, `page.php`, and `single.php` provide classic template entry points. Reusable content markup lives in `template-parts/content/`, with an empty-results template at `template-parts/content-none.php`.
 
-```text
-theme/
-├── style.css                      # Theme header + minimal baseline styles
-├── functions.php                  # Boots the theme and registers helpers
-├── inc/
-│   ├── setup.php                  # Theme supports and menus
-│   └── enqueue.php                # Enqueues CSS/JS bundles
-├── assets/                        # Build output lives here (ignored)
-├── src/
-│   ├── css/tailwind.css           # Tailwind CSS 4 entrypoint
-│   └── js/
-│       ├── main.js                # Theme JS entrypoint (imports drawer)
-│       └── mobile-drawer.js       # Off-canvas navigation logic
-├── template-parts/
-│   ├── hero/hero.php              # Hero module scaffold
-│   └── navigation-mobile.php      # Mobile drawer markup
-├── front-page.php                 # Example home template including hero
-├── header.php / footer.php        # Layout chrome
-└── wp-content/plugins/
-    └── site-functionality/        # Project functionality plugin scaffold
-```
+## Site Functionality plugin
 
-## 🎨 Styling
+The optional plugin scaffold is at `wp-content/plugins/site-functionality/site-functionality.php` inside this repository. When installing the repository as a theme, copy the `site-functionality` directory into the WordPress installation's actual `wp-content/plugins/` directory and activate **Site Functionality** separately.
 
-Tailwind CSS 4 drives the theme styling. The CSS entrypoint is `src/css/tailwind.css` and begins with:
-
-```css
-@import "tailwindcss";
-```
-
-Add project-wide styles, components, or utilities there, then rebuild with `npm run watch` or `npm run build`.
-
-The project also includes `postcss.config.mjs` using `@tailwindcss/postcss` for Tailwind CSS 4 compatibility.
-
-## ✅ Requirements
-
-- Node.js 24 recommended (`.nvmrc` included)
-- WordPress 6.0+
-- PHP 7.4+
+Keep project-specific custom post types, taxonomies, and ACF field groups in this plugin. It includes commented examples; none are enabled by default, and ACF is not bundled.

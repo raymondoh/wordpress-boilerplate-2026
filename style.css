@@ -1,29 +1,9 @@
 /*
-Theme Name: WordPress Boilerplate 2025
-Theme URI: https://example.com/
-Author: Your Name
-Author URI: https://example.com/
-Description: A clean starter boilerplate theme with Tailwind and ESBuild.
-Version: 0.1.0
+Theme Name: WordPress Boilerplate
+Author: Idiom Digital
+Description: A lean classic WordPress starter theme built with Tailwind CSS 4 and esbuild.
+Version: 1.0.0
 License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: boilerplate
-Tags: boilerplate, tailwind, minimal
 */
-
-body {
-    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    color: #111827;
-    background-color: #ffffff;
-    line-height: 1.6;
-}
-
-a {
-    color: #2563eb;
-}
-
-a:hover,
-a:focus {
-    color: #1d4ed8;
-}
-

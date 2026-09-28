@@ -59,7 +59,6 @@
             </button>
         </div>
     </div>
-    <span class="sr-only hidden -translate-x-4 translate-x-0 translate-x-full opacity-0 opacity-100 pointer-events-none pointer-events-auto overflow-hidden"></span>
 </header>
 
 <?php get_template_part( 'template-parts/navigation-mobile' ); ?>

@@ -1,11 +1,9 @@
 <?php
 /**
  * Plugin Name: Site Functionality
- * Plugin URI: https://example.com/
  * Description: Scaffold for project-specific functionality (CPTs, taxonomies, ACF) that should live outside the theme.
  * Version: 0.1.0
- * Author: Your Name
- * Author URI: https://example.com/
+ * Author: Idiom Digital
  * License: GPL-2.0-or-later
  * Text Domain: site-functionality
  *

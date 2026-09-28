@@ -2,7 +2,7 @@
 /**
  * Enqueue theme styles and scripts.
  *
- * @package WordPress_Boilerplate_2025
+ * @package WP_Boilerplate
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -21,7 +21,7 @@ if ( ! function_exists( 'bp_enqueue_theme_assets' ) ) {
             'bp-style',
             get_stylesheet_uri(),
             array(),
-            BP_THEME_VERSION
+            wp_get_theme()->get( 'Version' )
         );
 
         $css_rel  = '/assets/css/main.css';

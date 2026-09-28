@@ -1,8 +1,8 @@
 {
   "name": "wordpress-boilerplate",
   "version": "1.0.0",
-  "description": "A clean boilerplate for classic WordPress theme development with Tailwind CSS.",
-  "author": "Your Name",
+  "description": "A lean classic WordPress starter theme built with Tailwind CSS 4 and esbuild.",
+  "author": "Idiom Digital",
   "license": "GPL-2.0-or-later",
   "scripts": {
     "build:css": "npx @tailwindcss/cli -i ./src/css/tailwind.css -o ./assets/css/main.css --minify",
@@ -14,9 +14,7 @@
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
-    "@tailwindcss/postcss": "^4.3.3",
     "esbuild": "^0.25.12",
-    "postcss": "^8.5.6",
     "tailwindcss": "^4.3.3"
   },
   "allowScripts": {

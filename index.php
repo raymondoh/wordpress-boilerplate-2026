@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main id="main" class="site-main container section" role="main">
+<main id="main" class="site-main site-container site-section" role="main">
     <?php if ( have_posts() ) : ?>
         <div class="space-y-12">
             <?php

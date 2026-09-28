@@ -2,7 +2,7 @@
 /**
  * Off-canvas mobile navigation.
  *
- * @package WordPress_Boilerplate_2025
+ * @package WP_Boilerplate
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
